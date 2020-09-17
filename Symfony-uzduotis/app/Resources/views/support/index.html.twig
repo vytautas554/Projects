@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+    {{ form_start(form) }}
+
+    <div>
+        {{ form_widget(form.Vardas) }}
+        {{ form_errors(form.Vardas) }}
+    </div>
+    <div>
+        {{ form_widget(form.Pavarde) }}
+        {{ form_errors(form.Pavarde) }}
+    </div>
+    <div>
+        {{ form_widget(form.Email) }}
+        {{ form_errors(form.Email) }}
+    </div>
+    <div>
+        {{ form_widget(form.Komentaras) }}
+        {{ form_errors(form.Komentaras) }}
+    </div>
+
+    <div>
+        {{ form_widget(form.recaptcha)}}
+    </div>
+
+    {# Render CSRF token etc .#}
+    <div style="display:none">
+        {{ form_rest(form) }}
+    </div>
+    
+    <input type="submit" value="Siusti">
+
+    {{ form_end(form) }}
+    </div>
+    
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .container {
+            margin-top: 40px;
+        }
+    </style>
+{% endblock %}
