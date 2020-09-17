@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Aux from '../../hoc/File';
+import File from '../../hoc/File/File';
 import styles from './Layout.module.css';
 import Toolbar from '../Navigation/Toobar/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
@@ -22,7 +22,7 @@ class Layout extends Component {
 
     render () {
         return (
-            <Aux>
+            <File>
                 <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler}/>
                 <SideDrawer 
                 open={this.state.showSideDrawer}
@@ -30,7 +30,7 @@ class Layout extends Component {
                 <main className={styles.Content}>
                     {this.props.children}
                 </main>
-            </Aux>)
+            </File>)
     }
 }
 

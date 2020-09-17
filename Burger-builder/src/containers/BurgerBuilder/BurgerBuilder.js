@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
-import Aux from '../../hoc/File';
+import File from '../../hoc/File/File';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
-import axios from '../../axios-orders';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import axios from '../../axios-orders';
 
 const INGREDIENT_PRICES = {
     salota: 0.5,
@@ -122,7 +123,7 @@ class BurgerBuilder extends Component {
             orderSummary = <Spinner/>;
         }
         return (
-            <Aux>
+            <File>
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCnacelHandler}>
                     {orderSummary}
                 </Modal>
@@ -134,9 +135,9 @@ class BurgerBuilder extends Component {
                     purchasable={this.state.purchasable}
                     ordered={this.purchaseHandler}
                     price={this.state.totalPrice}/>
-            </Aux>
+            </File>
         );
     }
 }
 
-export default BurgerBuilder;
+export default withErrorHandler(BurgerBuilder, axios);

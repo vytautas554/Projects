@@ -20,12 +20,11 @@
         {{ form_widget(form.Komentaras) }}
         {{ form_errors(form.Komentaras) }}
     </div>
-
+    
     <div>
         {{ form_widget(form.recaptcha)}}
     </div>
 
-    {# Render CSRF token etc .#}
     <div style="display:none">
         {{ form_rest(form) }}
     </div>

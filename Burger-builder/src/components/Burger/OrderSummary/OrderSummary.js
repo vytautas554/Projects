@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Aux from '../../../hoc/File';
+import File from '../../../hoc/File/File';
 import Button from '../../UI/Button/Button';
 
 class OrderSummary extends Component {
@@ -20,7 +20,7 @@ class OrderSummary extends Component {
         });
 
         return (
-            <Aux>
+            <File>
                 <h3>Jūsų užsakymas</h3>
                 <p>Mėsainis su jūsų pasirinktais ingredientais:</p>
                 <ul>
@@ -30,7 +30,7 @@ class OrderSummary extends Component {
                 <p>Tęsti užsakymą?</p>
                 <Button btnType="Danger" clicked={this.props.purchaseCancelled}>ATŠAUKTI</Button>
                 <Button btnType="Success" clicked={this.props.purchaseContinued}>TĘSTI</Button>
-            </Aux>
+            </File>
         );
     }
 }
