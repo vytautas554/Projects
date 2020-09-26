@@ -19,16 +19,18 @@ const INGREDIENT_PRICES = {
 class BurgerBuilder extends Component {
     
     state = {
-        ingredients: {
-            salota: 0,
-            kiauliena: 0,
-            sūris: 0,
-            mėsa: 0
-        },
+        ingredients: null,
         totalPrice: 4,
         purchasable: false,
         purchasing: false,
         loading: false
+    }
+
+    componentDidMount () {
+        axios.get('https://react-mano-burgeris.firebaseio.com/ingredients.json')
+            .then(response => {
+                this.setState({ingredients: response.data});
+            });
     }
 
     updatePurchaseState (ingredients) {
@@ -122,11 +124,9 @@ class BurgerBuilder extends Component {
         if ( this.state.loading ) {
             orderSummary = <Spinner/>;
         }
-        return (
+
+        let burger = (
             <File>
-                <Modal show={this.state.purchasing} modalClosed={this.purchaseCnacelHandler}>
-                    {orderSummary}
-                </Modal>
                 <Burger ingredients={this.state.ingredients}/>
                 <BuildControls
                     ingredientAdded={this.addIngredientHandler}
@@ -135,6 +135,15 @@ class BurgerBuilder extends Component {
                     purchasable={this.state.purchasable}
                     ordered={this.purchaseHandler}
                     price={this.state.totalPrice}/>
+            </File>
+            );
+
+        return (
+            <File>
+                <Modal show={this.state.purchasing} modalClosed={this.purchaseCnacelHandler}>
+                    {orderSummary}
+                </Modal>
+                
             </File>
         );
     }

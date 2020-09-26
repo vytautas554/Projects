@@ -1,0 +1,13 @@
+C:\Users\Vytautas\Desktop\Vytautas_Krapikas_.NET_Kaunas\bin\Debug\netcoreapp3.1\Vytautas_Krapikas_.NET_Kaunas.exe
+C:\Users\Vytautas\Desktop\Vytautas_Krapikas_.NET_Kaunas\bin\Debug\netcoreapp3.1\Vytautas_Krapikas_.NET_Kaunas.deps.json
+C:\Users\Vytautas\Desktop\Vytautas_Krapikas_.NET_Kaunas\bin\Debug\netcoreapp3.1\Vytautas_Krapikas_.NET_Kaunas.runtimeconfig.json
+C:\Users\Vytautas\Desktop\Vytautas_Krapikas_.NET_Kaunas\bin\Debug\netcoreapp3.1\Vytautas_Krapikas_.NET_Kaunas.runtimeconfig.dev.json
+C:\Users\Vytautas\Desktop\Vytautas_Krapikas_.NET_Kaunas\bin\Debug\netcoreapp3.1\Vytautas_Krapikas_.NET_Kaunas.dll
+C:\Users\Vytautas\Desktop\Vytautas_Krapikas_.NET_Kaunas\bin\Debug\netcoreapp3.1\Vytautas_Krapikas_.NET_Kaunas.pdb
+C:\Users\Vytautas\Desktop\Vytautas_Krapikas_.NET_Kaunas\obj\Debug\netcoreapp3.1\Vytautas_Krapikas_.NET_Kaunas.AssemblyInfoInputs.cache
+C:\Users\Vytautas\Desktop\Vytautas_Krapikas_.NET_Kaunas\obj\Debug\netcoreapp3.1\Vytautas_Krapikas_.NET_Kaunas.AssemblyInfo.cs
+C:\Users\Vytautas\Desktop\Vytautas_Krapikas_.NET_Kaunas\obj\Debug\netcoreapp3.1\Vytautas_Krapikas_.NET_Kaunas.csproj.CoreCompileInputs.cache
+C:\Users\Vytautas\Desktop\Vytautas_Krapikas_.NET_Kaunas\obj\Debug\netcoreapp3.1\Vytautas_Krapikas_.NET_Kaunas.dll
+C:\Users\Vytautas\Desktop\Vytautas_Krapikas_.NET_Kaunas\obj\Debug\netcoreapp3.1\Vytautas_Krapikas_.NET_Kaunas.pdb
+C:\Users\Vytautas\Desktop\Vytautas_Krapikas_.NET_Kaunas\obj\Debug\netcoreapp3.1\Vytautas_Krapikas_.NET_Kaunas.genruntimeconfig.cache
+C:\Users\Vytautas\Desktop\Vytautas_Krapikas_.NET_Kaunas\obj\Debug\netcoreapp3.1\Vytautas_Krapikas_.NET_Kaunas.csprojAssemblyReference.cache
