@@ -1,3 +1,5 @@
+import buildControls from "../BuildControls";
+
 import React from 'react';
 
 import styles from './BuildControl.module.css';
@@ -8,10 +10,12 @@ const buildControl = (props) => (
         <button 
             className={styles.Less} 
             onClick={props.removed} 
-            disabled={props.disabled}>Mažiau</button>
+            disabled={props.disabled}>Less
+        </button>
         <button 
             className={styles.More} 
-            onClick={props.added}>Daugiau</button>
+            onClick={props.added}>More
+        </button>
     </div>
 );
 

@@ -7,14 +7,14 @@ import Backdrop from '../../UI/Backdrop/Backdrop';
 import File from '../../../hoc/File/File';
 
 const sideDrawer = (props) => {
-    let attachedClasses = [styles.SideDrawer, styles.Close];
+    let attachedStyles = [styles.SideDrawer, styles.Close];
     if (props.open) {
-        attachedClasses = [styles.SideDrawer, styles.Open];
+        attachedStyles = [styles.SideDrawer, styles.Open];
     }
     return (
         <File>
             <Backdrop show={props.open} clicked={props.closed}/>
-            <div className={attachedClasses.join(' ')}>
+            <div className={attachedStyles.join(' ')}>
                 <div className={styles.Logo}>
                     <Logo/>
                 </div>
@@ -24,6 +24,6 @@ const sideDrawer = (props) => {
             </div>
         </File>
     );
-}
+};
 
 export default sideDrawer;

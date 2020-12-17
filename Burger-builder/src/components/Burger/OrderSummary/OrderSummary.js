@@ -4,32 +4,30 @@ import File from '../../../hoc/File/File';
 import Button from '../../UI/Button/Button';
 
 class OrderSummary extends Component {
-
-    componentDidUpdate() {
-        console.log('[OrderSummary] DidUpdate');
+    componentDidUpdate () {
+        console.log('[OrderSummary] WillUpdate');
     }
-    
+
     render () {
         const ingredientSummary = Object.keys(this.props.ingredients)
         .map(igKey => {
             return (
                 <li key={igKey}>
                     <span style={{textTransform: 'capitalize'}}>{igKey}</span>: {this.props.ingredients[igKey]}
-                </li>
-            );
+                </li>);
         });
 
         return (
             <File>
-                <h3>Jūsų užsakymas</h3>
-                <p>Mėsainis su jūsų pasirinktais ingredientais:</p>
+                <h3>Your order</h3>
+                <p>A deliciuos burger with the following ingredients:</p>
                 <ul>
                     {ingredientSummary}
                 </ul>
-                <p><strong>Galutinė kaina: {this.props.price.toFixed(2)}</strong></p>
-                <p>Tęsti užsakymą?</p>
-                <Button btnType="Danger" clicked={this.props.purchaseCancelled}>ATŠAUKTI</Button>
-                <Button btnType="Success" clicked={this.props.purchaseContinued}>TĘSTI</Button>
+                <p><strong>Total price: {this.props.price.toFixed(2)}</strong></p>
+                <p>Continue to Checkout?</p>
+                <Button btnType="Danger" clicked={this.props.purchaseCancelled}>CANCEL</Button>
+                <Button btnType="Success" clicked={this.props.purchaseContinue}>CONTINUE</Button>
             </File>
         );
     }

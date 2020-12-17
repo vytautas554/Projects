@@ -10,14 +10,14 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
 
 const INGREDIENT_PRICES = {
-    salota: 0.5,
-    sūris: 0.4,
-    mėsa: 1.3,
-    kiauliena: 0.7
+    salad: 0.5,
+    cheese: 0.4,
+    meat: 1.3,
+    bacon: 0.7
 };
 
 class BurgerBuilder extends Component {
-    
+
     state = {
         ingredients: null,
         totalPrice: 4,
@@ -27,7 +27,7 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount () {
-        axios.get('https://react-mano-burgeris.firebaseio.com/ingredients.json')
+        axios.get('https://react-my-burger-93cb3-default-rtdb.firebaseio.com/ingredients.json')
             .then(response => {
                 this.setState({ingredients: response.data});
             });
@@ -35,12 +35,12 @@ class BurgerBuilder extends Component {
 
     updatePurchaseState (ingredients) {
         const sum = Object.keys(ingredients)
-        .map(igKey => {
-            return ingredients[igKey];
-        })
-        .reduce((sum, el) => {
-            return sum + el;
-        }, 0);
+            .map(igKey => {
+                return ingredients[igKey];
+            })
+            .reduce((sum, el) => {
+                return sum +el;
+            }, 0);
         this.setState({purchasable: sum > 0});
     }
 
@@ -60,7 +60,7 @@ class BurgerBuilder extends Component {
 
     removeIngredientHandler = (type) => {
         const oldCount = this.state.ingredients[type];
-        if (oldCount <=0) {
+        if (oldCount <= 0) {
             return;
         }
         const updatedCount = oldCount - 1;
@@ -79,33 +79,42 @@ class BurgerBuilder extends Component {
         this.setState({purchasing: true});
     }
 
-    purchaseCancelHandler = () => {
+    purchaseCancellHandler = () => {
         this.setState({purchasing: false});
     }
 
     purchaseContinueHandler = () => {
-        // alert('teskite');
-        this.setState({loading: true});
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Vytautas',
-                adress: {
-                    street: 'tuju g. 1',
-                    zipCode: '54125',
-                    country: 'Lithuania'
-                },
-                email: 'test@test.com'
-            },
-            deliveryMethod: 'fastest'
+        // alert('You continue');
+        // this.setState({loading: true});
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: 'Vytautas',
+        //         address: {
+        //             street: 'Teststreet 1',
+        //             zipCode: '41351',
+        //             country: 'Germany'
+        //         },
+        //         email: 'test@test.com'
+        //     },
+        //     deliveryMethod: 'fastest'
+        // }
+        // axios.post('/orders.json', order)
+        // .then(response => {
+        //     this.setState({loading: false, purchasing: false});
+        // })
+        // .catch(error => {
+        //     this.setState({loading: false, purchasing: false});
+        // });
+        const queryParams = [];
+        for (let i in this.state.ingredients) {
+            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
         }
-        axios.post('/orders.json', order)
-        .then(response => {
-            this.setState({loading: false, purchasing: false});
-        })
-        .catch(error => {
-            this.setState({loading: false, purchasing: false});
+        const queryString = queryParams.join('&');
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
         });
     }
 
@@ -114,36 +123,42 @@ class BurgerBuilder extends Component {
             ...this.state.ingredients
         };
         for (let key in disabledInfo) {
-            disabledInfo[key] = disabledInfo[key] <=0
+            disabledInfo[key] = disabledInfo[key] <= 0
         }
-        let orderSummary = <OrderSummary 
-        ingredients={this.state.ingredients}
-        price={this.state.totalPrice}
-        purchaseCancelled={this.purchaseCancelHandler}
-        purchaseContinued={this.purchaseContinueHandler}/>;
-        if ( this.state.loading ) {
+        let orderSummary = null;
+
+        let burger = <Spinner/>
+
+        if (this.state.ingredients) {
+            burger = (
+                <File>
+                    <Burger ingredients={this.state.ingredients}/>
+                    <BuildControls
+                        ingredientAdded={this.addIngredientHandler}
+                        ingredientsRemoved={this.removeIngredientHandler}
+                        disabled={disabledInfo}
+                        purchasable={this.state.purchasable}
+                        ordered={this.purchaseHandler}
+                        price={this.state.totalPrice}/>
+                </File>
+            );
+            orderSummary = <OrderSummary 
+                ingredients={this.state.ingredients}
+                price={this.state.totalPrice}
+                purchaseCancelled={this.purchaseCancellHandler}
+                purchaseContinue={this.purchaseContinueHandler}/>;
+        }
+
+        if (this.state.loading) {
             orderSummary = <Spinner/>;
         }
 
-        let burger = (
-            <File>
-                <Burger ingredients={this.state.ingredients}/>
-                <BuildControls
-                    ingredientAdded={this.addIngredientHandler}
-                    ingredientRemoved={this.removeIngredientHandler}
-                    disabled={disabledInfo}
-                    purchasable={this.state.purchasable}
-                    ordered={this.purchaseHandler}
-                    price={this.state.totalPrice}/>
-            </File>
-            );
-
         return (
             <File>
-                <Modal show={this.state.purchasing} modalClosed={this.purchaseCnacelHandler}>
-                    {orderSummary}
+                <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
+                   {orderSummary}
                 </Modal>
-                
+                {burger}
             </File>
         );
     }
